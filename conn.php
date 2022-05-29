@@ -1,18 +1,27 @@
 <?php
 
+session_start();
+
 ///////////  CONEXÃO EM PDO  ///////////
 $localhost = "localhost";
 $user = "root";
 $password = "";
 $dbName = "loja";
 
-$pdo = new PDO("mysql:dbname=".$dbName."; host=".$localhost, $user, $password);
+global $pdo;
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try{
+    $pdo = new PDO("mysql:dbname=".$dbName."; host=".$localhost, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = $pdo->query("SELECT * FROM usuarios");
-$sql->execute();
+}catch(PDOException $e){
+    echo "ERRO: ".$e->getMessage();
+    exit; 
+}
 
-echo $sql->rowCount();
+
+
 
 ?>
+
+
