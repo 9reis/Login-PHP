@@ -23,6 +23,23 @@ class Usuario{
             return false;
         }
     }
+
+    public function logged($id){
+        global $pdo;
+
+        $array = [];
+
+        $sql = "SELECT nome FROM usuarios WHERE idusuario = :idusuario";
+        $sql = $pdo->prepare($sql);
+        $sql->bindValue("idusuario", $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetch();
+
+            return $array;
+        }
+    }
 }
 
 ?>

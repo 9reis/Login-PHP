@@ -1,5 +1,5 @@
 <?php
-require 'conn.php';
+require 'verifica.php';
 
 if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])):
 
@@ -42,8 +42,9 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])):
           </ul>
         </li>
       </ul>
-        <div class="form-inline my-2 my-lg-0 btn" >
-            <a href="logout.php">SAIR</a>
+        <div class="form-inline" > <!--my-lg-0 -->
+            <label class="p-2"><?php echo $nomeUser ?></label>
+            <a href="logout.php" class="btn mr-2">SAIR</a>
         </div>
     </div>
   </div>
