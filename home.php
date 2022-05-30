@@ -37,8 +37,8 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])):
                 Cadastro
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cliente</a></li>
-                <li><a class="dropdown-item" href="#">Produtos</a></li>
+                <li><a class="dropdown-item" href="home.php?pg=clientes">Cliente</a></li>
+                <li><a class="dropdown-item" href="home.php?pg=produtos">Produtos</a></li>
               </ul>
             </li>
           </ul>
@@ -52,7 +52,22 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])):
 
     <main>
       <div class="container-fluid">
-        <h3 class="mt-3">Olá <?php echo $nomeUser ?>, Seja Bem Vindo </h3>
+        <h5 class="mt-3">Olá <?php echo $nomeUser ?>, Seja Bem Vindo </h5>
+        
+        <?php
+        $pg = "";
+
+        if(isset($_GET['pg']) && !empty($_GET['pg'])){
+          $pg = addslashes($_GET['pg']);
+        }
+        
+        switch($pg){
+          case 'clientes':require 'pags/clientes.php'; break;
+          case 'produtos':require 'pags/produtos.php'; break;
+          default: require 'pags/dashboard.php'; break;
+        }
+        
+        ?>
       </div>
     </main>  
 
